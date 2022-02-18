@@ -1,36 +1,53 @@
-package etcd
+package main
 
 import (
-	etcd_client "go.etcd.io/etcd/client/v3"
+	"context"
+	"fmt"
+	"go.etcd.io/etcd/client/v3"
 	"time"
 )
 
 func main() {
 
+	err := NewClient()
+	if err != nil {
+		panic(err)
+	}
 
 }
 
-func NewClient() {
-	etcdClient, err := etcd_client.New(etcd_client.Config{
-		Endpoints:            []string{"http://254.0.0.1:12345"},
-		AutoSyncInterval:     0,
-		DialTimeout:          2 * time.Second,
-		DialKeepAliveTime:    0,
-		DialKeepAliveTimeout: 0,
-		MaxCallSendMsgSize:   0,
-		MaxCallRecvMsgSize:   0,
-		TLS:                  nil,
-		Username:             "",
-		Password:             "",
-		RejectOldCluster:     false,
-		DialOptions:          nil,
-		Context:              nil,
-		Logger:               nil,
-		LogConfig:            nil,
-		PermitWithoutStream:  false,
+func NewClient() error {
+	cli, err := clientv3.New(clientv3.Config{
+		Endpoints:            []string{"http://127.0.0.1:2379"},
+		DialTimeout:          5 * time.Second,
 	})
 	if err != nil {
-
+		return err
 	}
-	defer etcdClient.Close()
+	defer cli.Close()
+
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second * 1)
+	putResp, err := cli.Put(ctx, "/service/pay", "pay")
+	cancel()
+	if err != nil {
+		return err
+	}
+	fmt.Println(putResp)
+
+	getResp, err := cli.Get(context.Background(), "/service/pay")
+	if err != nil {
+		return err
+	}
+	fmt.Println(getResp)
+	for _, kv := range getResp.Kvs {
+		fmt.Printf("key: %s, value: %s\n", kv.Key, kv.Value)
+	}
+
+	deleteResp, err := cli.Delete(context.Background(), "/service/pay")
+	if err != nil {
+		return err
+	}
+	fmt.Println(deleteResp)
+	return nil
 }
