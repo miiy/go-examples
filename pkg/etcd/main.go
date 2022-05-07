@@ -9,24 +9,38 @@ import (
 
 func main() {
 
-	err := NewClient()
+	cli, cleanup, err := NewClient()
 	if err != nil {
 		panic(err)
 	}
+	defer cleanup()
 
+	if err = basic(cli); err != nil {
+		panic(err)
+	}
+
+	if err = lease(cli); err != nil {
+		panic(err)
+	}
 }
 
-func NewClient() error {
+func NewClient() (*clientv3.Client, func(), error) {
 	cli, err := clientv3.New(clientv3.Config{
 		Endpoints:            []string{"http://127.0.0.1:2379"},
 		DialTimeout:          5 * time.Second,
 	})
 	if err != nil {
-		return err
+		return nil, nil, err
 	}
-	defer cli.Close()
 
+	 cleanup := func() {
+		defer cli.Close()
+	}
 
+	return cli, cleanup, nil
+}
+
+func basic(cli *clientv3.Client) error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second * 1)
 	putResp, err := cli.Put(ctx, "/service/pay", "pay")
 	cancel()
@@ -49,5 +63,22 @@ func NewClient() error {
 		return err
 	}
 	fmt.Println(deleteResp)
+
+	return nil
+}
+
+func lease(cli *clientv3.Client) error {
+	grantResp, err := cli.Grant(context.Background(), 10)
+	if err != nil {
+		return err
+	}
+	fmt.Println(grantResp)
+
+	putResp, err := cli.Put(context.Background(), "/test/lease", "10s", clientv3.WithLease(grantResp.ID))
+	if err != nil {
+		return err
+	}
+	fmt.Print(putResp)
+
 	return nil
 }
