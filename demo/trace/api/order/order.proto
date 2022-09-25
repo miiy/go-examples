@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "github.com/miiy/go-examples/trace/api/order";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.order";
+option java_outer_classname = "OrderProto";
+
+package order;
+
+message Order {
+  int64 id = 1;
+  string title = 2;
+}
+
+message GetOrderRequest {
+  string name = 1;
+}
+
+// The order service definition.
+service OrderService {
+  // Sends a getOrder
+  rpc GetOrder (GetOrderRequest) returns (Order) {}
+}
+
