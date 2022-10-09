@@ -1,8 +1,8 @@
-package main
+package compare
 
 func Test1() bool {
 	var v string
-	if  v == "" {
+	if v == "" {
 		return true
 	}
 	return false
@@ -15,4 +15,3 @@ func Test2() bool {
 	}
 	return false
 }
-

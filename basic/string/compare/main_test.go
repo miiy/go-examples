@@ -1,16 +1,16 @@
-package main
+package compare
 
 import (
 	"testing"
 )
 
-func benchmarkTest1(b *testing.B) {
+func BenchmarkTest1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Test1()
 	}
 }
 
-func benchmarkTest2(b *testing.B) {
+func BenchmarkTest2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Test2()
 	}

@@ -14,3 +14,5 @@ func defer04() int {
 
 // 1
 // panic: 2
+
+// 遇到 panic 会停止执行当前函数后面的代码

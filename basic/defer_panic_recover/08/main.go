@@ -11,6 +11,8 @@ func defer03() int {
 	return 2
 }
 
-//
+// output:
 // 1
 // 2
+
+// defer 会在 return 之前执行：

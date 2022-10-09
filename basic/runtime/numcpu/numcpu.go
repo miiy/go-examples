@@ -5,8 +5,9 @@ import (
 	"runtime"
 )
 
-func main()  {
+func main() {
 	cpuNum := runtime.NumCPU()
 	fmt.Println("cpu:", cpuNum)
-	runtime.GOMAXPROCS(cpuNum)
 }
+
+// cpu: 16

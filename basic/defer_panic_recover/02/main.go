@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	defer02()
-	// defer02_01()
+	case01()
+	// case02()
 }
 
-func defer02() {
+func case01() {
 	defer fmt.Println(1)
 	defer func() {
 		panic(2)
@@ -15,13 +15,13 @@ func defer02() {
 	defer fmt.Println(3)
 }
 
-func defer02_01() {
+func case02() {
 	defer fmt.Println(1)
 	defer panic(2)
 	defer fmt.Println(3)
 }
 
-//
+// case01 and case02 output：
 // 3
 // 1
 // panic: 2

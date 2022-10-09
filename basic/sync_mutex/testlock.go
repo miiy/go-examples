@@ -1,4 +1,4 @@
-package grpcbackup
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func main2()  {
+func main2() {
 	testSyncLock()
 }
 
@@ -24,7 +24,8 @@ func testWaitGroup() {
 }
 
 // % go run testlock.go |sort|uniq |wc -l
-//      70
+//
+//	70
 func testSyncLock() {
 	lock := sync.Mutex{}
 	a := 0
