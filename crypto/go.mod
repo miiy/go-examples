@@ -1,6 +1,6 @@
-module github.com/miiy/go-example/pkg/crypto2go
+module github.com/miiy/go-example/crypto
 
-go 1.17
+go 1.19
 
 require (
 	github.com/andreburgaud/crypt2go v1.0.0
