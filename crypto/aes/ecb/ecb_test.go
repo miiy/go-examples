@@ -1,7 +1,6 @@
 package ecb
 
 import (
-	"crypto/sha1"
 	"fmt"
 	"testing"
 )
@@ -13,22 +12,18 @@ var (
 )
 
 // AES encryption with ECB and PKCS7 padding
-func TestAesEcb(t *testing.T) {
+func TestEncrypt(t *testing.T) {
 	cipherText, err := Encrypt(pt, key)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Ciphertext:", fmt.Sprintf("%X", cipherText))
+	fmt.Printf("cipherText: %X\n", cipherText)
 
-	recoveredPt, err := Decrypt(cipherText, key)
+	plainText, err := Decrypt(cipherText, key)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Recovered plaintext:", fmt.Sprintf("%s", recoveredPt))
-
-	h := sha1.New()
-	h.Write(pt)
-	fmt.Println("Sha1:", fmt.Sprintf("%x", h.Sum(nil)))
+	fmt.Printf("plainText: %s\n", plainText)
 }
 
 func TestHex(t *testing.T) {
