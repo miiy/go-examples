@@ -8,9 +8,9 @@ import (
 	"testing"
 )
 
-// 使用 json.Unmarshal 对 interface{} 类型反序列化时，当数字的位数大于6位时，会变成科学计数法
-// 方法一和方法二适用于能去确定传的参数
-// 在验签的时候反序列化数据后签名对应不上，可使用方法三
+// 使用 json.Unmarshal 对 interface{} 类型反序列化时，当数字的位数大于 6 位时，会变成科学计数法
+// 方法一和方法二适用于能确定传的参数
+// 方法三适用于不能确定传的参数。比如在验签场景中，对 interface{} 类型反序列化，避免变成科学计数法后签名对应不上
 func TestInterfaceUnmarshal(t *testing.T) {
 	var jsonStr = `{"id":7656942, "title": "标题", "price": 1.50}`
 
