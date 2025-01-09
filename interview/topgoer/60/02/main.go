@@ -11,16 +11,15 @@ type data struct {
 	sync.Mutex
 }
 
-func (d data) test(s string)  {
+func (d data) test(s string) {
 	d.Lock()
 	defer d.Unlock()
 
-	for i:=0;i<5 ;i++  {
-		fmt.Println(s,i)
+	for i := 0; i < 5; i++ {
+		fmt.Println(s, i)
 		time.Sleep(time.Second)
 	}
 }
-
 
 func main() {
 

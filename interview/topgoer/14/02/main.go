@@ -1,4 +1,4 @@
-//2.下面代码输出什么？
+// 2.下面代码输出什么？
 package main
 
 import "fmt"
@@ -9,7 +9,7 @@ func incr(p *int) int {
 }
 
 func main() {
-	p :=1
+	p := 1
 	incr(&p)
 	fmt.Println(p)
 }

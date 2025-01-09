@@ -8,7 +8,8 @@ import "fmt"
 
 // Example
 func test() {
-	var run func() = nil
+	var run func()
+	//var run func() = nil
 	defer run()
 	fmt.Println("runs")
 }

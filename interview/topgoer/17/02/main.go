@@ -1,4 +1,4 @@
-//2.下面代码输出什么？
+// 2.下面代码输出什么？
 package main
 
 import "fmt"

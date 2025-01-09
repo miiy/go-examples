@@ -1,4 +1,4 @@
-//2.下面选项正确的是？
+// 2.下面选项正确的是？
 package main
 
 func main() {

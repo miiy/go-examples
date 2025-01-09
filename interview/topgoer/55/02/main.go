@@ -1,7 +1,5 @@
-//2.下面的代码有什么问题？
+// 2.下面的代码有什么问题？
 package main
-
-import "fmt"
 
 type T struct {
 	n int

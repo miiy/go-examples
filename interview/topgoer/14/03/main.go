@@ -1,4 +1,4 @@
-//3.对 add() 函数调用正确的是（）
+// 3.对 add() 函数调用正确的是（）
 package main
 
 func add(args ...int) int {
