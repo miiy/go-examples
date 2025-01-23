@@ -1,12 +1,17 @@
+package main
+
 var v1 int
 var v2 string
+
 // array
 var v3 [10]int
+
 // slice
 var v4 []int
 var v5 struct {
 	f int
 }
+
 // pointer
 var v6 *int
 

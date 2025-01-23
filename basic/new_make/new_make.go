@@ -4,16 +4,17 @@ type Bar struct {
 	thingOne string
 	thingTwo string
 }
-func main()  {
+
+func main() {
 
 }
 
-func testNew()  {
+func testNew() {
 	// array struct
-	y := new()
+	// y := new()
 }
 
-func testMake()  {
+func testMake() {
 	// chan map slice
-	make()
+	// make()
 }
