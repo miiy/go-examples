@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func main()  {
+func main() {
 	v := make(chan struct{})
 	go func() {
 		time.Sleep(2 * time.Second)
